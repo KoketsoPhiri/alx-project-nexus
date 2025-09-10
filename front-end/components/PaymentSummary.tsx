@@ -31,26 +31,26 @@ export default function PaymentSummary() {
   const totalCents = totalBeforeTaxCents + taxCents;
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-blue-500 p-6 rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">Order Summary</h2>
       <div className="space-y-3">
         <div className="flex justify-between items-center">
           <p className="text-gray-700">Items ({cartItems.length}):</p>
-          <p className="font-semibold">${formatCurrency(productPriceCents)}</p>
+          <p className="font-semibold text-black-700">${formatCurrency(productPriceCents)}</p>
         </div>
         <div className="flex justify-between items-center">
           <p className="text-gray-700">Shipping & handling:</p>
-          <p className="font-semibold">${formatCurrency(shippingPriceCents)}</p>
+          <p className="font-semibold text-black-700">${formatCurrency(shippingPriceCents)}</p>
         </div>
         <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
           <p className="font-bold">Total before tax:</p>
-          <p className="font-bold">${formatCurrency(totalBeforeTaxCents)}</p>
+          <p className="font-bold text-black-700">${formatCurrency(totalBeforeTaxCents)}</p>
         </div>
         <div className="flex justify-between items-center">
           <p className="text-gray-700">Estimated tax (10%):</p>
-          <p className="font-semibold">${formatCurrency(taxCents)}</p>
+          <p className="font-semibold text-black-700">${formatCurrency(taxCents)}</p>
         </div>
-        <div className="border-t-2 border-gray-300 pt-3 flex justify-between items-center font-bold text-lg text-red-600">
+        <div className="border-t-2 border-gray-800 pt-3 flex justify-between items-center font-bold text-lg text-red-600">
           <p>Order total:</p>
           <p>${formatCurrency(totalCents)}</p>
         </div>
