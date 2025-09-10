@@ -23,15 +23,17 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6">Products</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {status === 'loading' && <p>Loading products...</p>}
-          {status === 'failed' && <p>Error loading products.</p>}
-          {status === 'succeeded' &&
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
-            ))}
+      <div className="bg-slate-800 text-slate-100 min-h-screen">
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold mb-8 text-center text-teal-400">Our Products</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {status === 'loading' && <p className="col-span-full text-center text-lg">Loading products...</p>}
+            {status === 'failed' && <p className="col-span-full text-center text-red-400">Error loading products. Please try again.</p>}
+            {status === 'succeeded' &&
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
+              ))}
+          </div>
         </div>
       </div>
     </>

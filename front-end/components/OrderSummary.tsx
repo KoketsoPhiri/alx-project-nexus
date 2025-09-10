@@ -26,8 +26,8 @@ export default function OrderSummary() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Shopping Cart ({cartItems.length} items)</h2>
+    <div className="bg-slate-700 p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-slate-100">Shopping Cart ({cartItems.length} items)</h2>
       {cartItems.map((cartItem) => {
         const product = getProductById(cartItem.productId);
         const deliveryOption = getDeliveryOptionById(cartItem.deliveryOptionId);
@@ -37,21 +37,21 @@ export default function OrderSummary() {
         const deliveryDate = dayjs().add(deliveryOption.deliveryDays, 'day').format('dddd, MMMM D');
 
         return (
-          <div key={cartItem.productId} className="mb-6 pb-6 border-b border-gray-200 last:border-b-0 last:mb-0">
-            <p className="text-green-700 font-semibold mb-2">Delivery date: {deliveryDate}</p>
+          <div key={cartItem.productId} className="mb-6 pb-6 border-b border-slate-600 last:border-b-0 last:mb-0">
+            <p className="text-green-400 font-semibold mb-2">Delivery date: {deliveryDate}</p>
             <div className="flex items-center space-x-4">
               <img className="w-24 h-24 object-contain" src={product.image} alt={product.name} />
               <div className="flex-1">
-                <p className="font-semibold">{product.name}</p>
-                <p className="text-red-500 font-bold mt-1">${formatCurrency(product.priceCents)}</p>
-                <div className="text-sm text-gray-600 mt-1">
+                <p className="font-semibold text-slate-100">{product.name}</p>
+                <p className="text-teal-400 font-bold mt-1">${formatCurrency(product.priceCents)}</p>
+                <div className="text-sm text-slate-400 mt-1">
                   Quantity: {cartItem.quantity}
-                  <button className="text-blue-600 ml-2">Update</button>
-                  <button className="text-blue-600 ml-2" onClick={() => handleDelete(product.id)}>Delete</button>
+                  <button className="text-blue-400 ml-2 hover:underline">Update</button>
+                  <button className="text-blue-400 ml-2 hover:underline" onClick={() => handleDelete(product.id)}>Delete</button>
                 </div>
               </div>
               <div className="flex-shrink-0">
-                <p className="font-semibold text-gray-700 mb-2">Choose a delivery option:</p>
+                <p className="font-semibold text-slate-100 mb-2">Choose a delivery option:</p>
                 {deliveryOptions.map((option) => {
                   const optionDate = dayjs().add(option.deliveryDays, 'day').format('dddd, MMMM D');
                   const isChecked = option.id === cartItem.deliveryOptionId;
@@ -63,11 +63,11 @@ export default function OrderSummary() {
                         name={`delivery-${product.id}`}
                         checked={isChecked}
                         onChange={() => handleDeliveryChange(product.id, option.id)}
-                        className="mr-2"
+                        className="mr-2 accent-teal-400"
                       />
                       <div className="text-sm">
-                        <p className="font-bold">{optionDate}</p>
-                        <p className="text-gray-500">
+                        <p className="font-bold text-slate-100">{optionDate}</p>
+                        <p className="text-slate-400">
                           {option.priceCents === 0 ? 'FREE Shipping' : `$${formatCurrency(option.priceCents)} - Shipping`}
                         </p>
                       </div>
