@@ -48,7 +48,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         <FaCheckCircle className="mr-1" />
         Added
       </div>
-      <button onClick={handleAddClick} className="w-full bg-yellow-400 text-black py-2 rounded-md font-semibold hover:bg-yellow-500 transition-colors">
+      <button onClick={handleAddClick} className="w-full bg-blue-400 text-black py-2 rounded-md font-semibold hover:bg-yellow-500 transition-colors">
         Add to Cart
       </button>
     </div>

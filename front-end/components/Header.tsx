@@ -11,7 +11,7 @@ export default function Header() {
     <header className="bg-slate-900 text-slate-100 py-5 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
-          <img className="h-10 md:h-12" src="/images/E-shopping.png" alt="E-shopping Logo" />
+          <img className="h-18 md:h-20" src="/images/E-shopping.png" alt="E-shopping Logo" />
         </Link>
         <div className="flex-1 max-w-2xl mx-6 relative">
           <input className="w-full rounded-full py-2 px-6 text-slate-900 bg-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-400" type="text" placeholder="Search for products..." />

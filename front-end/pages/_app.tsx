@@ -1,9 +1,12 @@
+// pages/_app.tsx
+
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import '../styles/globals.css';
 import { useEffect } from 'react';
 import { setCartItems } from '../store/slices/cartSlice';
+import Footer from '../components/Footer'; // Import the Footer component
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,7 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
+      <Footer />
     </Provider>
   );
 }

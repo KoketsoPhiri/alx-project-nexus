@@ -56,7 +56,7 @@ export default function PaymentSummary() {
         </div>
       </div>
       <Link href="/orders">
-        <button className="mt-6 w-full py-3 bg-yellow-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
+        <button className="mt-6 w-full py-3 bg-blue-400 text-black font-bold rounded-md hover:bg-yellow-500 transition-colors">
           Place your order
         </button>
       </Link>
