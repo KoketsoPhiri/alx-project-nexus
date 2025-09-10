@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1">
             <Link href="/">
-              <img className="h-10 mb-4" src="/images/E-shopping.png" alt="E-shopping Logo" />
+              <img className="h-20 mb-4" src="/images/E-shopping.png" alt="E-shopping Logo" />
             </Link>
             <p className="text-sm">Your one-stop shop for all your needs. Quality products, fast delivery, and unbeatable prices.</p>
           </div>
