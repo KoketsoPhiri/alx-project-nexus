@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { CartItem } from '../../types/types';
+import toast from 'react-hot-toast'; // Import toast
 
 interface CartState {
   items: CartItem[];
 }
 
 const initialState: CartState = {
-  items: [], // Start with an empty array on the server
+  items: [],
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // Other reducers
     setCartItems: (state, action: PayloadAction<CartItem[]>) => {
       state.items = action.payload;
     },
@@ -23,18 +23,21 @@ const cartSlice = createSlice({
 
       if (existingItem) {
         existingItem.quantity += 1;
+        toast.success(`Increased quantity to ${existingItem.quantity}`);
       } else {
         state.items.push({
           productId,
           quantity: 1,
           deliveryOptionId: '1',
         });
+        toast.success('Item added to cart!');
       }
       localStorage.setItem('cart', JSON.stringify(state.items));
     },
     removeFromCart: (state, action: PayloadAction<{ productId: string }>) => {
       state.items = state.items.filter((item) => item.productId !== action.payload.productId);
       localStorage.setItem('cart', JSON.stringify(state.items));
+      toast.error('Item removed from cart.');
     },
     updateDeliveryOption: (
       state,
@@ -47,6 +50,7 @@ const cartSlice = createSlice({
         matchingItem.deliveryOptionId = deliveryOptionId;
       }
       localStorage.setItem('cart', JSON.stringify(state.items));
+      toast('Delivery option updated.');
     },
   },
 });

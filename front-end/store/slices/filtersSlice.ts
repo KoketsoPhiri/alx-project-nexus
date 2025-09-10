@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface FiltersState {
+// Add the 'export' keyword here
+export interface FiltersState {
   searchTerm: string;
   sortBy: 'price-asc' | 'price-desc' | 'rating-desc' | 'name-asc';
   category: string;

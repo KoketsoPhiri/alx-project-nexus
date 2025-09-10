@@ -1,5 +1,6 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+import { JWT } from "next-auth/jwt";
 
 export const authOptions = {
   providers: [
@@ -9,8 +10,10 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }: any) {
-      session.user.id = token.sub;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session.user) {
+        session.user.id = token.sub; // This line is now valid
+      }
       return session;
     },
   },

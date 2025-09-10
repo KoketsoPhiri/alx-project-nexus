@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { setSortBy } from '../store/slices/filtersSlice';
 import { Product } from '../types/types';
+import { FiltersState } from '../store/slices/filtersSlice'; // Import the FiltersState type
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -50,7 +51,7 @@ export default function Home() {
               id="sort-by"
               className="rounded-md bg-slate-700 text-slate-100 border-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
               value={sortBy}
-              onChange={(e) => dispatch(setSortBy(e.target.value as any))}
+              onChange={(e) => dispatch(setSortBy(e.target.value as FiltersState['sortBy']))} // Corrected type cast
             >
               <option value="name-asc">Name (A-Z)</option>
               <option value="price-asc">Price (Low to High)</option>

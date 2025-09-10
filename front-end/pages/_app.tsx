@@ -5,18 +5,17 @@ import { store } from '../store/store';
 import '../styles/globals.css';
 import { useEffect } from 'react';
 import { setCartItems } from '../store/slices/cartSlice';
-import { setWishlistItems } from '../store/slices/wishlistSlice'; // Import wishlist action
+import { Toaster } from 'react-hot-toast'; // Import Toaster
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { setWishlistItems } from '../store/slices/wishlistSlice';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   useEffect(() => {
-    // Hydrate cart from localStorage
     const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     if (cartItems.length > 0) {
       store.dispatch(setCartItems(cartItems));
     }
-    // Hydrate wishlist from localStorage
     const wishlistItems = JSON.parse(localStorage.getItem('wishlist') || '[]');
     if (wishlistItems.length > 0) {
         store.dispatch(setWishlistItems(wishlistItems));
@@ -26,6 +25,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <Provider store={store}>
       <SessionProvider session={session}>
+        <Toaster position="top-right" /> {/* Add Toaster component */}
         <Header />
         <main>
           <Component {...pageProps} />
