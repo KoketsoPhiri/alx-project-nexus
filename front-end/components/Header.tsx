@@ -1,17 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Header() {
   const cartQuantity = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
+  const { data: session, status } = useSession();
 
   return (
     <header className="bg-slate-900 text-slate-100 py-5 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/">
-          <img className="h-18 md:h-20" src="/images/E-shopping.png" alt="E-shopping Logo" />
+          <img className="h-10 md:h-12" src="/images/E-shopping.png" alt="E-shopping Logo" />
         </Link>
         <div className="flex-1 max-w-2xl mx-6 relative">
           <input className="w-full rounded-full py-2 px-6 text-slate-900 bg-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-400" type="text" placeholder="Search for products..." />
@@ -20,6 +22,16 @@ export default function Header() {
           </button>
         </div>
         <div className="flex items-center space-x-6">
+          {status === "authenticated" ? (
+            <div className="text-sm md:text-base font-medium">
+              Hello, {session.user?.name}!
+              <button onClick={() => signOut()} className="ml-2 text-red-400 hover:underline">Sign out</button>
+            </div>
+          ) : (
+            <button onClick={() => signIn()} className="text-sm md:text-base font-medium hover:text-teal-400 transition-colors duration-200">
+              Sign In
+            </button>
+          )}
           <Link href="/orders" className="text-sm md:text-base font-medium hover:text-teal-400 transition-colors duration-200">
             Orders
           </Link>
